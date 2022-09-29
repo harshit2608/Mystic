@@ -1,0 +1,18 @@
+# Build Dirs
+Makefile
+**bin
+**bin-int
+
+# IDE Specific
+**.vscode
+**.vs
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+
+# Platform
+**.DS_Store
+
+# Logs
+**Mystic.log
