@@ -2,6 +2,8 @@
 
 #include "Mystic/Core/PlatformDetection.h"
 
+#include <signal.h>
+
 #ifdef MC_PLATFORM_WINDOWS
 #ifdef MC_BUILD_DLL
 #define MC_API __declspec(dllexport)
@@ -20,11 +22,12 @@
 #include <signal.h>
 #define MC_DEBUGBREAK() raise(SIGTRAP)
 #elif defined(MC_PLATFORM_MACOS)
-#define MC_DEBUGBREAK() __debugbreak()
+#define MC_DEBUGBREAK() raise(SIGTRAP)
 #else
 #error "Platform doesn't support debugbreak yet!"
 #endif
 #define MC_ENABLE_ASSERTS
+#define MC_ENABLE_MEMORY_LOGS
 #else
 #define MC_DEBUGBREAK()
 #endif

@@ -1,8 +1,19 @@
 #pragma once
 
 #include "Mystic/Core/Base.h"
+#include "Mystic/Memory/MemoryAllocator.h"
 
 int main(int argc, const char **argv);
+
+// void *operator new(std::size_t size)
+// {
+// 	return Mystic::MemoryAllocator::allocate(size);
+// }
+
+// void operator delete(void *ptr) noexcept
+// {
+// 	Mystic::MemoryAllocator::deallocate(ptr);
+// }
 
 namespace Mystic
 {

@@ -1,0 +1,11 @@
+Configurations:
+  Application:
+    Name: "Mystic Engine"
+    Window:
+      Height: 720
+      Width: 1080
+  Memory:
+    PoolAllocator:
+      ChunkSize: "32B"
+      TotalChunks: 33554432
+      TotalSize: "1GB"

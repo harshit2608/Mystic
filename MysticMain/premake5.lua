@@ -18,7 +18,8 @@ project "MysticMain"
 
   includedirs
   {
-    "src"
+    "src",
+		"%{IncludeDir.yaml_cpp}"
   }
 
 	filter "system:windows"

@@ -8,6 +8,7 @@
 #include <string>
 #include <ctime>
 
+// TODO: Allow string to be passed in the logs
 namespace Mystic
 {
 	enum LogPriority
@@ -68,9 +69,13 @@ namespace Mystic
 		FILE *m_File = nullptr;
 
 	private:
-		Log() {}
+		Log()
+		{
+			// printf("Cons calleed");
+		}
 		~Log()
 		{
+			// printf("DEStructor calleed");
 			CloseFile();
 		}
 
@@ -139,4 +144,4 @@ namespace Mystic
 #define MC_CORE_WARN(message, ...) ::Mystic::Log::Warn(__LINE__, __FILE__, ::Mystic::LogUser::Core, Yellow, message, __VA_ARGS__);
 #define MC_CORE_INFO(message, ...) ::Mystic::Log::Info(__LINE__, __FILE__, ::Mystic::LogUser::Core, Green, message, __VA_ARGS__);
 #define MC_CORE_ERROR(message, ...) ::Mystic::Log::Error(__LINE__, __FILE__, ::Mystic::LogUser::Core, Red, message, __VA_ARGS__);
-#define MC_CORE_CRITICAL(message, ...) ::Mystic::Log::Critical(__LINE__, __FILE__, ::Mystic::LogUser::Core, Magenta, message, __VA_ARGS__);
+#define MC_CORE_CRITICAL(message, ...) ::Mystic::Log::Critical(__LINE__, __FILE__, ::Mystic::LogUser::Core, WhiteOnRed, message, __VA_ARGS__);
