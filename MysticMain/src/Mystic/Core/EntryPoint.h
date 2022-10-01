@@ -12,6 +12,13 @@ extern Mystic::Application *Mystic::CreateApplication();
 // FIXME: Overriding new and delete throws segmentation fault
 void *operator new(std::size_t size)
 {
+	printf("%zu\n", size);
+	return Mystic::MemoryAllocator::allocate(size);
+}
+
+void *operator new[](std::size_t size)
+{
+	printf("Insidenew arry %zu\n", size);
 	return Mystic::MemoryAllocator::allocate(size);
 }
 
@@ -26,7 +33,7 @@ int main(int argc, const char **argv)
 {
 	Mystic::Log::Init();
 
-	std::size_t memoryToAllocate = Mystic::MemoryUtils::ConvertToBytes("64B");
+	std::size_t memoryToAllocate = Mystic::MemoryUtils::ConvertToBytes("128B");
 	Mystic::MemoryAllocator::Init(memoryToAllocate);
 
 	Mystic::Application *app = Mystic::CreateApplication();

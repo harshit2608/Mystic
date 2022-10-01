@@ -50,7 +50,7 @@ namespace Mystic
 			FreePool(); // FIXME: Not Sure
 		}
 		m_StartPtr = malloc(allocationSize);
-		memset(m_StartPtr, 0, allocationSize);
+		memset(m_StartPtr, -1, allocationSize);
 		MC_CORE_INFO("Allocate %zu Bytes in memory.", allocationSize)
 		m_Offset = 0;
 		m_TotalSize = allocationSize;
@@ -109,7 +109,7 @@ namespace Mystic
 	{
 		MC_CORE_WARN("ResetPool Called, current Offset is : %zu", m_Offset)
 		m_Offset = 0;
-		// memset(m_StartPtr, 0, m_TotalSize); // FIXME: Not sure cause it maight casue perfgormance lag
+		memset(m_StartPtr, -1, m_TotalSize); // FIXME: Not sure cause it maight casue perfgormance lag
 		MC_CORE_WARN("memory Add : %zu", std::size_t(m_StartPtr))
 	}
 

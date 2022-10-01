@@ -2,6 +2,7 @@
 
 #include "Mystic/Core/Application.h"
 
+#include <iostream>
 namespace Mystic
 {
 	Application::Application()
@@ -10,23 +11,29 @@ namespace Mystic
 
 	void Application::Run()
 	{
-		int i = 0;
+		int idx = 0;
 		for (int i = 0; i < 4; ++i)
 		{
-			void *test = new int[2];
+			int *test = new int(90);
 		}
 
 		MemoryAllocator::Print();
 		MemoryAllocator::ResetPool();
 		MC_CORE_WARN("POOL RESET", false)
 
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 2; ++i)
 		{
-			void *test = new double[3];
+			double *test = new double[2];
 		}
+		MemoryAllocator::ResetPool();
+
+		float *bie = new float[2];
+		std::cout << "value hain " << bie[0];
+		bie[0] = 1.0f;
+
 		MemoryAllocator::Print();
 
-		MC_CORE_INFO("test %d", i);
+		MC_CORE_INFO("test %d", idx);
 
 		while (m_Running)
 		{
