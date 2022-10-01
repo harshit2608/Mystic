@@ -26,7 +26,7 @@ namespace Mystic
 		}
 		catch (YAML::ParserException e)
 		{
-			MC_CORE_ERROR("Failed to load .hazel file '{0}'\n {1}", filepath.c_str(), e.what())
+			MC_CORE_ERROR("Failed to load .hazel file %s \n %s", filepath.c_str(), e.what())
 		}
 
 		if (!config["Configurations"])

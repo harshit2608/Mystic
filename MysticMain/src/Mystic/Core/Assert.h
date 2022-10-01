@@ -29,7 +29,7 @@
 // #define MC_INTERNAL_ASSERT_GET_MACRO(...) MC_EXPAND_MACRO(MC_INTERNAL_ASSERT_GET_MACRO_NAME(__VA_ARGS__, MC_INTERNAL_ASSERT_WITH_MSG, MC_INTERNAL_ASSERT_NO_MSG))
 
 // Currently accepts at least the condition and one additional parameter (the message) being optional
-#define MC_ASSERT(msg, __VA_ARGS__) MC_EXPAND_MACRO(MC_ERROR(msg, __VA_ARGS__) MC_DEBUGBREAK())
+#define MC_ASSERT(...) MC_EXPAND_MACRO(MC_ERROR(msg, __VA_ARGS__) MC_DEBUGBREAK())
 #define MC_CORE_ASSERT(...) MC_EXPAND_MACRO(MC_CORE_ERROR(msg, __VA_ARGS__))
 #else
 #define MC_ASSERT(...)

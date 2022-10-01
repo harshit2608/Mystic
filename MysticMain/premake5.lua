@@ -16,17 +16,37 @@ project "MysticMain"
     "src/**.cpp"
   }
 
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
+	}
+
   includedirs
   {
     "src",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.yaml_cpp}"
   }
+
+	links
+	{
+		"Glad",
+		"GLFW"
+		-- "yaml-cpp" TODO: Yaml-Cpp fails to build
+	}
 
 	filter "system:windows"
 		systemversion "latest"
 
 		defines
 		{
+		}
+
+		links
+		{
+			"opengl32.lib"
 		}
 
 	filter "system:macosx"

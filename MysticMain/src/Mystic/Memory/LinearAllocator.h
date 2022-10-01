@@ -7,7 +7,7 @@ namespace Mystic
 	class LinearAllocator
 	{
 	public:
-		LinearAllocator() {}
+		LinearAllocator() = default;
 		~LinearAllocator()
 		{
 		}

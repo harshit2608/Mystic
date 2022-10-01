@@ -1,47 +1,10 @@
 #include "mcpch.h"
 
 #include "Mystic/Memory/LinearAllocator.h"
-
-#include <iostream>
-#include <iomanip>
+#include "Utils/MemoryUtils.h"
 
 namespace Mystic
 {
-	void WhatsBehindThatPointer(const void *pointer, std::size_t size)
-	{
-		const std::byte *bytePointer = reinterpret_cast<const std::byte *>(pointer);
-		const std::ptrdiff_t pointerInteger =
-				reinterpret_cast<std::ptrdiff_t>(pointer);
-
-		int rows = 1;
-		if (size > 8)
-			rows = size / 8;
-
-		for (int i = 0; i < rows; i++)
-		{
-			const int rowIndex = i * 8;
-
-			std::cout << "[0x" << std::hex << std::setfill('0')
-								<< std::setw(sizeof(void *)) << (pointerInteger + rowIndex)
-								<< " ... 0x" << std::hex << std::setfill('0')
-								<< std::setw(sizeof(void *)) << (pointerInteger + rowIndex + 7)
-								<< "] ";
-
-			for (int j = 0; j < 8; j++)
-			{
-				const int index = rowIndex + j;
-				if (index > size)
-					std::cout << "00 ";
-
-				else
-					std::cout << std::hex << std::setfill('0') << std::setw(2)
-										<< static_cast<const int>(bytePointer[index]) << " ";
-			}
-
-			std::cout << std::endl;
-		}
-	}
-
 	static int count = 0;
 	void LinearAllocator::Init(std::size_t allocationSize)
 	{
@@ -51,10 +14,12 @@ namespace Mystic
 		}
 		m_StartPtr = malloc(allocationSize);
 		memset(m_StartPtr, -1, allocationSize);
+
 		MC_CORE_INFO("Allocate %zu Bytes in memory.", allocationSize)
 		m_Offset = 0;
 		m_TotalSize = allocationSize;
-		WhatsBehindThatPointer(m_StartPtr, allocationSize);
+
+		MemoryUtils::WhatsBehindThatPointer(m_StartPtr, allocationSize);
 	}
 
 	std::size_t LinearAllocator::alignMemory(std::size_t baseAddress, std::size_t alignment)
@@ -121,14 +86,13 @@ namespace Mystic
 
 	void LinearAllocator::Print()
 	{
-		using namespace std;
-		MC_WARN("PRINTIG HEAP DATA", true)
-		std::cout << sizeof(m_StartPtr) << endl;
-		std::cout << m_StartPtr << endl;
-		cout << &m_StartPtr << endl;
-		cout << *&m_StartPtr << endl;
-		cout << sizeof(*&m_StartPtr) << endl;
+		MC_CORE_WARN("PRINTING HEAP DATA", true)
+		std::cout << sizeof(m_StartPtr) << std::endl;
+		std::cout << m_StartPtr <<std::endl;
+		std::cout << &m_StartPtr << std::endl;
+		std::cout << *&m_StartPtr << std::endl;
+		std::cout << sizeof(*&m_StartPtr) << std::endl;
 
-		WhatsBehindThatPointer(m_StartPtr, m_TotalSize);
+		MemoryUtils::WhatsBehindThatPointer(m_StartPtr, m_TotalSize);
 	}
 } // namespace Mystic

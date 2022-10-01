@@ -7,6 +7,10 @@ newaction{
 		os.rmdir("./bin-int")
 		print("Removing MakeFiles")
 		os.remove("**Makefile")
+		print("Removing Visual Studio Files")
+		os.remove("**.vcxproj")
+		os.remove("**.vcxproj.**")
+		os.remove("**.sln")
 		print("Done")
 	end
 }

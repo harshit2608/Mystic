@@ -113,8 +113,8 @@ namespace Mystic
 				std::scoped_lock lock(m_LogMutex);
 				printf("%s", color);
 				printf("[%s]", buffer);
-				printf("[%s]", logger);
-				printf("%s", messagePriorityStr);
+				printf("[%s]: ", logger);
+				//printf("%s", messagePriorityStr);
 				printf(message, args...);
 				// printf(" on line %d in %s ", line, sourceFile);
 				printf(Reset);

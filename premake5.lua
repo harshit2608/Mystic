@@ -3,7 +3,7 @@ include "Dependencies.lua"
 
 workspace "Mystic"
 	architecture "x86_64"
-  startproject "MysticMain"
+  startproject "Editor"
 
   configurations
   {
@@ -26,7 +26,8 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 group "Dependencies"
 	include "vendor/premake"
-	include "vendor/yaml-cpp"
+	include "vendor/Glad"
+	include "vendor"
 group ""
 
 group "Core"

@@ -15,19 +15,19 @@ namespace Mystic
 
 		static void Init(std::size_t allocationSize);
 		static void Init(Config &vals);
-		static void ResetPool() { GetInstance().m_LinearAllcator.ResetPool(); }
+		static void ResetPool() { GetInstance().m_LinearAllocator.ResetPool(); }
 
 		static void Print()
 		{
-			GetInstance().m_LinearAllcator.Print();
+			GetInstance().m_LinearAllocator.Print();
 		}
 
 	private:
-		MemoryAllocator() {}
+		MemoryAllocator() = default;
 		~MemoryAllocator()
 		{
-			// m_PoolAllocator.ResetPool();
-			m_LinearAllcator.FreePool();
+			// m_PoolAllocator.ResetPool
+			m_LinearAllocator.FreePool();
 		}
 
 		MemoryAllocator(MemoryAllocator &other) = delete;
@@ -42,6 +42,6 @@ namespace Mystic
 
 	private:
 		// PoolAllocator m_PoolAllocator;
-		LinearAllocator m_LinearAllcator;
+		LinearAllocator m_LinearAllocator;
 	};
 } // namespace Mystic

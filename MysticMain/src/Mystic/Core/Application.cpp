@@ -28,8 +28,8 @@ namespace Mystic
 		MemoryAllocator::ResetPool();
 
 		float *bie = new float[2];
+		bie[0] = 1.2f;
 		std::cout << "value hain " << bie[0];
-		bie[0] = 1.0f;
 
 		MemoryAllocator::Print();
 
@@ -37,6 +37,7 @@ namespace Mystic
 
 		while (m_Running)
 		{
+			idx++;
 		}
 		MC_CORE_INFO("Game Loop Terminated", true);
 	}

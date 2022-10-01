@@ -5,6 +5,8 @@ namespace Mystic
 {
 	class Editor : public Application
 	{
+	public:
+		Editor() = default;
 	};
 
 	Application *CreateApplication()
